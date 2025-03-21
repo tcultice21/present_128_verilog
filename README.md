@@ -14,7 +14,7 @@ Scripts for generating test cases provided in ./test_case_generator_py. This wil
 ![Xilinx Vivado Simulation Results](./imgs/simulation_waveform.png)
 Note: Above is based on provided .mem files and controller. The "valid" flag will determine test success.
 
-###Files and Folders:
+### Files and Folders:
 - imgs -- contains images for READMEs in this repository
 - basys3_hw_fpga_config -- Contains the constraints file needed for implementation on Diligent Basys3 FPGA
 - test_case_generator_py -- Contains the Py notebook (ipynb) for generating quick and easy PRESENT-128 test mem files
