@@ -11,7 +11,7 @@ Scripts for generating test cases provided in ./test_case_generator_py. This wil
 ![Present Block Diagram](./imgs/Block_Diagram.png)
 
 ### Expected Simulation Results (Xilinx Vivado Behavioral Simulation Waveform):
-
+![Xilinx Vivado Simulation Results](./imgs/simulation_waveform.png)
 Note: Above is based on provided .mem files and controller. The "valid" flag will determine test success.
 
 ###Files and Folders:
