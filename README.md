@@ -1,8 +1,7 @@
 # present_128_verilog
 ## Verilog PRESENT-128 implementation
 
-Implementation in synthesizable Verilog of PRESENT Block Cipher algorithm in 128-bit mode. Currently only doing 4 rounds temporarily, but this can be changed by simply altering the round counter condition and generating new test cases for 32 rounds. This change is temporary for use in class assignments.
-
+Implementation in synthesizable Verilog of PRESENT Block Cipher algorithm in 128-bit mode.
 Controller included for providing a testing apparatus for loaded RAM elements (up to 32 test cases, but can be changed for more).
 
 Scripts for generating test cases provided in ./test_case_generator_py. This will use a python implementation of PRESENT to create 32 unique signatures.
