@@ -85,7 +85,7 @@ endmodule
 //-----------------------------------------------------------------------------
 
 // Top Module
-module present_uut_hw_test #(parameter KEY_VEC_SIZE = 128, parameter RESP_SIZE = 64, PLAIN_VEC_SIZE = 64, TEST_CASE_SIZE = 32) (
+module present_uut_hw_test #(parameter KEY_VEC_SIZE = 128, RESP_SIZE = 64, PLAIN_VEC_SIZE = 64, TEST_CASE_SIZE = 32, ROUNDS=32) (
     input [$clog2(TEST_CASE_SIZE)-1:0] seq_selected,
     input sig_mstr_clk,
     input sig_in_load,
@@ -104,7 +104,10 @@ module present_uut_hw_test #(parameter KEY_VEC_SIZE = 128, parameter RESP_SIZE =
     .vec_out_key(key_test_case)
     );
     
-    PRESENT_ENCRYPT dut(cphr_test_resp,pln_test_case,key_test_case,sig_in_load,sig_mstr_clk,sig_done_wait);
+    // parameter BLKSIZE = 64, 
+      //parameter KEYSIZE = 128, 
+      //parameter ROUNDS = 32
+    PRESENT_ENCRYPT #(.BLKSIZE(PLAIN_VEC_SIZE), .KEYSIZE(KEY_VEC_SIZE), .ROUNDS(ROUNDS)) dut(cphr_test_resp,pln_test_case,key_test_case,sig_in_load,sig_mstr_clk,sig_done_wait);
     
     verify_tst_blk #(RESP_SIZE, TEST_CASE_SIZE) verify_uut (
     .vec_in_response(cphr_test_resp),

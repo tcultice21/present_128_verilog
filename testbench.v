@@ -25,7 +25,9 @@ module CONTROLLER_TB;
     reg clk;
     wire valid;
     
-     present_uut_hw_test #(128, 64, 64, 32) uut_1 (
+    localparam ROUNDS = 32;
+    
+     present_uut_hw_test #(128, 64, 64, 32, ROUNDS) uut_1 (
      .seq_selected(select),
      .sig_mstr_clk(clk),
      .sig_in_load(load),
@@ -47,11 +49,8 @@ module CONTROLLER_TB;
             select = i;
             load = 1;
             #2 load = 0;
-            #14;
+            #(ROUNDS*4);
         end
         $finish;
     end
-endmodule
-
-
 endmodule

@@ -67,7 +67,11 @@ endmodule
 
 `timescale 1ns/1ps
 
-module PRESENT_ENCRYPT (
+module PRESENT_ENCRYPT
+    #(parameter BLKSIZE = 64, 
+      parameter KEYSIZE = 128, 
+      parameter ROUNDS = 32) 
+      (
         output reg [63:0] out_data, //output data
         input  [63:0] in_data,   // input data
         input  [127:0] key,    // input key
@@ -78,7 +82,7 @@ module PRESENT_ENCRYPT (
 
 reg  [127:0] key_reg;               // key register
 reg  [63:0] data;               // data register
-reg  [2:0]  round;              // round counter
+reg  [$clog2(ROUNDS):0]  round;              // round counter
 wire [63:0] dat_rkey,dat_sub,dat_perm;     // intermediate data
 wire [127:0] key_rot,key_nxt;        // subkey stage data
 wire [63:0] odat_buf;           // Grabs final xor'ed value for output
@@ -132,7 +136,7 @@ begin
       out_data <= 0;
    end
    else begin
-      if(round == 5) begin
+      if(round == ROUNDS) begin
         out_data <= odat_buf;
         done <= 1'b1;
       end
@@ -140,7 +144,7 @@ begin
           out_data <= out_data;
           done <= done;
       end
-      if(round <= 5) begin
+      if(round <= ROUNDS) begin
         round <= round + 1;
       end
   end
